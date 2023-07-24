@@ -82,50 +82,53 @@ SELECT melon_type, common_name, price, price * .73 FROM melons;
 -- Task: Write a query that shows the total number of customers in our
 -- customer table.
 
--- REPLACE THIS WITH YOUR QUERY
+SELECT COUNT(*) FROM customers;
 
 -- Problem 15:
 -- Task: Write a query that counts the number of orders shipped to
 -- California.
 
--- REPLACE THIS WITH YOUR QUERY
+SELECT COUNT(*) FROM orders WHERE shipto_state = 'CA';
 
 -- Problem 16:
 -- Task: Write a query that shows the total amount of money spent
 -- across all melon orders.
 
--- REPLACE THIS WITH YOUR QUERY
+SELECT SUM(order_total) FROM orders;
 
 -- Problem 17:
 -- Task: Write a query that shows the average order cost.
 
--- REPLACE THIS WITH YOUR QUERY
+SELECT AVG(order_total) FROM orders;
 
 -- Problem 18:
 -- Task: Write a query that shows the order total that was lowest in price.
 
--- REPLACE THIS WITH YOUR QUERY
+SELECT MIN(order_total) from orders;
 
 -- Problem 19:
 -- Task: Write a query that fetches the id of the customer whose email
 -- is 'pclark74@gmail.com'.
 
--- REPLACE THIS WITH YOUR QUERY
+SELECT customer_id FROM customer
 
 -- Problem 20:
 -- Task: Write a query that shows the id, status and order_total for all
 -- orders made by customer 100.
 
--- REPLACE THIS WITH YOUR QUERY
+SELECT id FROM customers WHERE email = 'pclark74@gmail.com';
 
 -- Problem 21:
 --  Task: Write a single query that shows the id, status, and order total
 -- for all orders made by 'pclark74@gmail.com'. Use a sub-select to do this.
 
--- REPLACE THIS WITH YOUR QUERY
+SELECT id, status, order_total FROM orders
+ WHERE customer_id = (
+    SELECT id FROM customers WHERE email = 'pclark74@gmail.com';
+ );
 
 -- Problem 22:
 -- Write a query that shows the total amount of revenue that comes
 -- from internet orders.
 
--- REPLACE THIS WITH YOUR QUERY
+SELECT SUM(order_total) FROM orders WHERE salesperson_id IS NULL;
